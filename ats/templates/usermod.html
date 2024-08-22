@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'images\R.jpeg' %}");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            border-radius: 10px;
+            margin: 50px auto;
+            width: 80%;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .quote {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .icon {
+            width: 100px;
+            height: 100px;
+            transition: transform 0.2s;
+        }
+
+        .icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ user.username }}</h1>
+        <p class="quote">"A good teacher can inspire hope, ignite the imagination, and instill a love of learning." - Brad Henry</p>
+        <div class="button-container">
+            <a href="{% url 'lgout' %}">
+                <img src="{% static 'images\lo.jpg' %}" alt="Logout" class="icon">
+            </a>
+            <a href="{% url 'edit_user' user.id %}">
+                <img src="{% static 'images\ei.jpg' %}" alt="Edit User" class="icon">
+            </a>
+            <a href="{% url 'card_teacher' user.id %}">
+                <img src="{% static 'images\cv.jpg' %}" alt="Card" class="icon">
+            </a>
+        </div>
+    </div>
+</body>
+</html>

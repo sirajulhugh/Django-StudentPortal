@@ -1,0 +1,63 @@
+{% extends 'page1.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Mode</title>
+    <style>
+        body {
+            background: url("{% static 'images\admin2.JPEG' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        .admin-container {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            width: 60%;
+            max-width: 100%;
+            padding: 40px;
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #4682b4;
+        }
+
+        .role {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .icon {
+            width: 100px;
+            height: 100px;
+            transition: transform 0.2s;
+        }
+
+        .icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Admin Mode</h1>
+        <div class="role">
+            <p>The role of a good administrator in an educational institution is crucial for fostering a positive learning environment. They ensure that the institution operates efficiently and effectively, support the needs of both teachers and students, and implement policies that enhance educational outcomes.</p>
+        </div>
+        <a href="{% url 'lgout' %}">
+            <img src="{% static 'images\lo.jpg' %}" alt="Logout" class="icon">
+        </a>
+    </div>
+</body>
+</html>
+{% endblock %}

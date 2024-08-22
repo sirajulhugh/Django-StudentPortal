@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url("{% static 'images/card2.jpg' %}");
+            background-size: cover;
+            background-position: center bottom 48%;
+            background-blend-mode: overlay;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 550px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: #c38c3b;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .card-header h2 {
+            color: black;
+        }
+
+        .img-fluid {
+            border-radius: 10px;
+        }
+
+        .teacher-info {
+            text-align: center;
+        }
+
+        .teacher-info h3 {
+            margin-top: 10px;
+            color: black;
+        }
+
+        .teacher-details p {
+            margin: 5px 0;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-button .btn {
+            background-color: #4682b4;
+            color: white;
+        }
+
+        .back-button .btn:hover {
+            background-color: #5a9bd3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-card">
+        <div class="card">
+            <div class="card-header">
+                <h2>Teacher Details</h2>
+            </div>
+            <div class="card-body">
+                <div class="teacher-info">
+                    {% if teacher.images %}
+                    <img src="{{ teacher.images.url }}" alt="Teacher Image" class="img-fluid">
+                    {% else %}
+                    <img src="{% static 'images/default_image.jpg' %}" alt="Teacher Image" class="img-fluid">
+                    {% endif %}
+                    <h3>{{ teacher.user.first_name }} {{ teacher.user.last_name }}</h3>
+                </div>
+                <div class="teacher-details">
+                    <p><strong>Username:</strong> {{ teacher.user.username }}</p>
+                    <p><strong>Email:</strong> {{ teacher.user.email }}</p>
+                    <p><strong>Age:</strong> {{ teacher.age }}</p>
+                    <p><strong>Phone:</strong> {{ teacher.phnoenumber }}</p>
+                    <p><strong>Address:</strong> {{ teacher.address }}</p>
+                    <p><strong>Course:</strong> {{ teacher.course.name }}</p>
+                </div>
+                <div class="back-button">
+                    <a href="{% url 'usermod' teacher.user.id %}" class="btn btn-primary">Go back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

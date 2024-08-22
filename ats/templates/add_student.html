@@ -1,0 +1,55 @@
+{% extends 'page1.html' %}
+{% block content %}
+{% load static %}
+    <title>Add Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color:#4682b4;
+        }
+        form {
+            width: 300px;
+            margin: auto;
+        }
+        label, input, textarea, select, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input, textarea, select, button {
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Registeration</h1>
+    <form method="post" action="{% url 'addstudent' %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        <label for="age">Age:</label>
+        <input type="number" name="age" id="age" required>
+        <label for="address">Address:</label>
+        <textarea name="address" id="address" required></textarea>
+        <label for="date_of_join">Date of Join:</label>
+        <input type="date" name="date_of_join" id="date_of_join" required>
+        <label for="course">Course:</label>
+        <select name="course" id="course" required>
+            {% for course in courses %}
+                <option value="{{ course.id }}">{{ course.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Add Student</button>
+    </form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Institution Sign In</title>
+    {% load static %}
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url("{% static 'images/factors-back.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        header img {
+            height: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            width: 400px;
+            max-width: 100%;
+            padding: 40px;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        p.welcome {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        input {
+            background: #eee;
+            border: none;
+            padding: 12px 15px;
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        button {
+            border-radius: 20px;
+            border: 1px solid #2c87a5;
+            background: #26a9b5;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #0c6892;
+        }
+
+        .link {
+            margin-top: 20px;
+        }
+
+        .link a {
+            color: #2bd5ff;
+            text-decoration: none;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #ff4b2b;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{% static 'images\eduic.jpg' %}" alt="Institution Logo">
+        Academic Institution
+    </header>
+    <div class="container">
+        <div class="quote">
+            "The influence of a good teacher can never be erased."
+        </div>
+        <form action="{% url 'log' %}" method="POST">
+            {% csrf_token %}
+            <h1>Sign In</h1>
+            <p class="welcome">Welcome back! Please sign in to your account.</p>
+            <input type="text" placeholder="Username" name="usname" required />
+            <input type="password" placeholder="Password" name="passd" required />
+            <button type="submit">Sign In</button>
+            <div class="link">
+                <p>Don't have an account? <a href="{% url 'signuppage' %}">Sign Up</a></p>
+            </div>
+        </form>
+        {% for msg in messages %}
+        <div class="alert alert-danger">
+            {{ msg }}
+        </div>
+        {% endfor %}
+    </div>
+    <footer>
+        &copy; 2024 Academic Institution | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a>
+    </footer>
+</body>
+</html>
